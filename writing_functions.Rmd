@@ -1,0 +1,75 @@
+---
+title: "writing functions"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+data(mtcars)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+
+## Z scores
+
+```{r}
+x_vec <- rnorm(25, mean = 5, sd = 4)
+
+(x_vec - mean(x_vec)) / sd(x_vec)
+
+
+z_scores = function(x) {
+  z <- (x - mean(x)) / sd(x)
+  return(z)
+}
+
+z_scores(x = x_vec)
+
+y_vec <- rnorm(40, mean = 12, sd = .3)
+
+z_scores(y_vec)
+```
+
+How great is this??
+
+```{r}
+z_scores = function(x) {
+  
+  if(!is.numeric(x)) {
+    stop("x needs to be numeric")
+  }  
+  
+  if (length(x) < 3) {
+    stop("x should have at least 3 numbers")
+  }
+  
+  z <- (x - mean(x)) / sd(x)
+  return(z)
+}
+```
+
+
+```{r, error = TRUE}
+z_scores(3)
+
+z_scores(c("my", "name", "is", "Daniel"))
+
+z_scores(mtcars)
+```
+

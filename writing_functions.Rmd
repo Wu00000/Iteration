@@ -210,9 +210,9 @@ get_page_reviews <- function(page_url) {
   return(reviews)
 }
 
-base_url <- "https://www.amazon.com/product-reviews/B00005JNBQ/ref=cm_cr_arp_d_viewopt_rvwer?ie=UTF8&reviewerType=avp_only_reviews&sortBy=recent&pageNumber=1"
+base_url <- "https://www.amazon.com/product-reviews/B00005JNBQ/ref=cm_cr_arp_d_viewopt_rvwer?ie=UTF8&reviewerType=avp_only_reviews&sortBy=recent&pageNumber="
 
-urls = str_c(base_url, 1:5)
+urls <- str_c(base_url, 1:5)
 
 bind_rows(
   get_page_reviews(urls[1]),
